@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="ru">
 <head>
+ <link rel="icon" href="logo.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Полупроводники:прошлое и будущее</title>
@@ -31,9 +32,27 @@ max-width:800px{.hero{grid-template-columns:1fr}.kpi{grid-template-columns:1fr 1
 </style>
 </head>
 <body>
+ <!-- Loader --><div id="loader" style="position:fixed;inset:0;background:#020617;display:flex;align-items:center;justify-content:center;z-index:9999;">
+  <div style="text-align:center">
+    <div style="font-size:32px;animation:pulse 1.2s infinite">⚡ Voltix</div>
+    <div style="margin-top:10px;color:#94a3b8">Загрузка...</div>
+  </div>
+</div><style>
+@keyframes pulse{
+  0%{opacity:0.3;transform:scale(0.95)}
+  50%{opacity:1;transform:scale(1.05)}
+  100%{opacity:0.3;transform:scale(0.95)}
+}
+</style><script>
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').style.display='none';
+  },1200);
+});
+</script>
 <header>
  <div style="display:flex;align-items:center;justify-content:center;gap:10px">
-  <h1>⚡ SemiTech</h1>
+  <h1>⚡ Voltix</h1>
 </div>
 <p style="color:#94a3b8">Полупроводники: прошлое и будущее</p>
   <div class="badge">Индивидуальный проект, 10 класс</div>
