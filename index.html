@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Полупроводники: прошлое и будущее</title>
+<style>
+:root{--bg:#0b1220;--card:#0f172a;--accent:#38bdf8;--text:#e2e8f0;--muted:#94a3b8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,system-ui;background:linear-gradient(180deg,#020617,#0b1220);color:var(--text);scroll-behavior:smooth}
+header{padding:24px 16px;text-align:center;background:rgba(2,6,23,.8);backdrop-filter:blur(8px);position:sticky;top:0;border-bottom:1px solid rgba(148,163,184,.1)}
+nav{margin-top:8px}
+nav a{margin:8px;color:var(--accent);text-decoration:none;font-weight:600}
+section{padding:64px 16px;max-width:1100px;margin:auto}
+h1{margin:0 0 6px 0}
+h2{color:var(--accent);margin-bottom:12px}
+p{line-height:1.6}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.badge{display:inline-block;padding:6px 10px;border:1px solid rgba(148,163,184,.2);border-radius:999px;color:var(--muted);font-size:12px}
+.card{background:linear-gradient(180deg,#020617,#0f172a);padding:20px;border-radius:16px;border:1px solid rgba(148,163,184,.1);transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi .card{padding:16px;text-align:center}
+.kpi b{font-size:20px}
+.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px;border:1px solid rgba(148,163,184,.15)}
+.table th,.table td{padding:10px;border-bottom:1px solid rgba(148,163,184,.1);text-align:left}
+.table th{background:#020617;color:var(--muted)}
+.table tr:hover{background:rgba(56,189,248,.06)}
+footer{text-align:center;padding:24px;background:#020617;color:var(--muted);border-top:1px solid rgba(148,163,184,.1)}
+max-width:800px{.hero{grid-template-columns:1fr}.kpi{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Полупроводники: прошлое и будущее</h1>
+  <div class="badge">Индивидуальный проект, 10 класс</div>
+  <nav>
+    <a href="#intro">Введение</a>
+    <a href="#theory">Теория</a>
+    <a href="#practice">Практика</a>
+    <a href="#compare">Сравнения</a>
+    <a href="#future">Будущее</a>
+    <a href="#end">Вывод</a>
+  </nav>
+</header><section id="intro" class="hero">
+  <div>
+    <h2>Почему полупроводники важны</h2>
+    <p>Полупроводники — фундамент современной электроники: от смартфонов до суперкомпьютеров. Их ключевое свойство — управляемая проводимость, позволяющая создавать диоды, транзисторы и интегральные схемы.</p>
+    <div class="kpi">
+      <div class="card"><b>~3–5 нм</b><div class="muted">современный техпроцесс</div></div>
+      <div class="card"><b>20–100 млрд</b><div class="muted">транзисторов</div></div>
+      <div class="card"><b>100–500×</b><div class="muted">рост производительности</div></div>
+      <div class="card"><b>200–500×</b><div class="muted">рост энергоэффективности</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Цель проекта</h3>
+    <p>Проанализировать развитие полупроводников и показать ключевые тенденции будущего на основе сравнений архитектур, материалов и поколений процессоров.</p>
+  </div>
+</section><section id="theory">
+  <h2>Теория</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>История</h3>
+      <p>От экспериментов Фарадея до транзистора Шокли (1947) — основа современной электроники.</p>
+    </div>
+    <div class="card">
+      <h3>Классы материалов</h3>
+      <p>Проводники — высокая проводимость; диэлектрики — изоляция; полупроводники — управляемая проводимость (температура, свет, примеси).</p>
+    </div>
+    <div class="card">
+      <h3>Применение</h3>
+      <p>Диоды, транзисторы, микросхемы, солнечные панели, связь 5G/6G, датчики.</p>
+    </div>
+  </div>
+</section><section id="practice">
+  <h2>Практическая часть</h2>
+  <div class="grid">
+    <div class="card
+
+
+"><h3>CPU</h3><p>Универсальные вычисления, низкая задержка, 4–64 ядер.</p></div>
+    <div class="card"><h3>GPU</h3><p>Параллельные вычисления, тысячи ядер, высокая пропускная способность.</p></div>
+    <div class="card"><h3>TPU</h3><p>Матричные операции для ИИ, максимальная эффективность в нейросетях.</p></div>
+  </div>
+</section><section id="compare">
+  <h2>Сравнения</h2>  <div class="card">
+    <h3>CPU vs GPU vs TPU</h3>
+    <table class="table">
+      <tr><th>Характеристика</th><th>CPU</th><th>GPU</th><th>TPU</th></tr>
+      <tr><td>Тип вычислений</td><td>Последовательные</td><td>Параллельные</td><td>Матричные</td></tr>
+      <tr><td>Ядра</td><td>4–128</td><td>1000–10000</td><td>1000+ блоков</td></tr>
+      <tr><td>Энергоэффективность</td><td>Низкая</td><td>Средняя</td><td>Высокая</td></tr>
+      <tr><td>Применение</td><td>Универсально</td><td>Графика/ИИ</td><td>ИИ</td></tr>
+    </table>
+  </div>  <div class="card">
+    <h3>Материалы: Si / SiC / GaN</h3>
+    <table class="table">
+      <tr><th>Параметр</th><th>Si</th><th>SiC</th><th>GaN</th></tr>
+      <tr><td>Ширина зоны (эВ)</td><td>1.12</td><td>3.26</td><td>3.44</td></tr>
+      <tr><td>Температура (°C)</td><td>150–200</td><td>300–600</td><td>300–500</td></tr>
+      <tr><td>КПД</td><td>1x</td><td>2–3x</td><td>3–5x</td></tr>
+    </table>
+  </div>  <div class="card">
+    <h3>2005 vs 2024</h3>
+    <table class="table">
+      <tr><th>Параметр</th><th>2005</th><th>2024</th></tr>
+      <tr><td>Техпроцесс</td><td>130 нм</td><td>3–5 нм</td></tr>
+      <tr><td>Транзисторы</td><td>~125 млн</td><td>20–100 млрд</td></tr>
+      <tr><td>Производительность</td><td>~10 GFLOPS</td><td>1000–5000 GFLOPS</td></tr>
+      <tr><td>Энергоэффективность</td><td>~0.1</td><td>20–50</td></tr>
+    </table>
+  </div></section><section id="future">
+  <h2>Будущее</h2>
+  <div class="grid">
+    <div class="card"><h3>Нанотехнологии</h3><p>Квантовые точки, структуры на уровне атомов.</p></div>
+    <div class="card"><h3>ИИ-чипы</h3><p>TPU и нейроморфные процессоры для обучения моделей.</p></div>
+    <div class="card"><h3>Новые материалы</h3><p>SiC, GaN, графен — выше частоты и температуры.</p></div>
+  </div>
+</section><section id="end">
+  <h2>Заключение</h2>
+  <div class="card">
+    <p>Полупроводники — ключевой драйвер научно-технического прогресса. Их развитие определяет будущее ИИ, связи и энергетики.</p>
+  </div>
+</section><footer>
+  <p>Кодиров Тошбой, 10 класс • Проект по физике</p>
+</footer></body>
+</html>
