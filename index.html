@@ -29,48 +29,90 @@ body {
 
 /* Шапка */
 header {
-  padding: 20px 16px;
-  text-align: center;
+  padding: 16px 24px;
   background: rgba(2, 6, 23, 0.9);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-/* Навигация */
-nav {
-  margin-top: 12px;
-  overflow-x: auto;
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  padding-bottom: 4px;
 }
-nav a {
-  display: inline-block;
-  margin: 0 8px;
-  padding: 6px 0;
+.logo span {
   color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
 }
-nav a:active { opacity: 0.6; }
 
-/* Секции */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropbtn {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.dropbtn:hover {
+  background: var(--accent);
+  color: #020617;
+  border-color: var(--accent);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: var(--card);
+  min-width: 180px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(12px);
+  z-index: 101;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.dropdown-content a {
+  color: var(--text);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.05);
+}
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+.dropdown-content a:hover {
+  background: var(--accent);
+  color: #020617;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 section {
   padding: 48px 20px;
   max-width: 1100px;
   margin: 0 auto;
 }
-h1 { font-size: 1.8rem; margin-bottom: 4px; }
 h2 { color: var(--accent); margin-bottom: 20px; font-size: 1.6rem; }
 p { margin-bottom: 12px; }
 
-/* Карточки */
 .card {
   background: var(--card);
   padding: 20px;
@@ -78,10 +120,8 @@ p { margin-bottom: 12px; }
   border: 1px solid rgba(148, 163, 184, 0.1);
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.1, 1);
   cursor: pointer;
-  
-  /* Исправление: запрет выхода текста за границы */
-  word-break: break-word; 
-  overflow: hidden; 
+  word-break: break-word;
+  overflow: hidden;
 }
 .card:hover, .card:active {
   transform: scale(1.01);
@@ -90,20 +130,32 @@ p { margin-bottom: 12px; }
   box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Скрытый текст для раздела "Теория" */
 .theory-details {
   max-height: 0;
   opacity: 0;
-  overflow: hidden;
+  overflow-y: auto;
   transition: all 0.4s ease;
   margin-top: 0;
   color: var(--muted);
   font-size: 0.9rem;
+  line-height: 1.6;
 }
 .card.active .theory-details {
-  max-height: 300px; /* Достаточно места для текста */
+  max-height: 250px;
   opacity: 1;
   margin-top: 12px;
+  padding-right: 8px;
+}
+.theory-details::-webkit-scrollbar {
+  width: 6px;
+}
+.theory-details::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+}
+.theory-details::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
 }
 .card-hint {
   font-size: 0.8rem;
@@ -113,10 +165,9 @@ p { margin-bottom: 12px; }
   font-weight: 500;
 }
 
-/* Сетки */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 .kpi {
@@ -128,7 +179,6 @@ p { margin-bottom: 12px; }
 .kpi .card { text-align: center; padding: 16px; }
 .kpi b { font-size: 1.5rem; display: block; margin-bottom: 6px; }
 
-/* Таблицы */
 .table-wrapper {
   overflow-x: auto;
   margin: 16px 0;
@@ -149,7 +199,6 @@ th, td {
 th { color: var(--accent); font-weight: 600; }
 tr:last-child td { border-bottom: none; }
 
-/* Hero секция */
 .hero {
   display: grid;
   grid-template-columns: 1fr;
@@ -157,13 +206,31 @@ tr:last-child td { border-bottom: none; }
 }
 @media (min-width: 768px) {
   .hero { grid-template-columns: 1.2fr 0.8fr; }
-  h1 { font-size: 2.2rem; }
-  nav a { margin: 0 12px; font-size: 1rem; }
+  .logo { font-size: 1.3rem; }
   section { padding: 64px 24px; }
   th, td { padding: 14px 12px; font-size: 0.9rem; }
 }
+@media (max-width: 550px) {
+  header {
+    padding: 12px 16px;
+  }
+  .logo {
+    font-size: 0.95rem;
+    white-space: normal;
+    max-width: 55%;
+  }
+  .dropbtn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card.active .theory-details {
+    max-height: 200px;
+  }
+}
 
-/* Слайдер */
 .slider-container {
   margin-top: 16px;
   padding: 10px;
@@ -201,10 +268,9 @@ input[type="range"]::-webkit-slider-thumb:active {
   color: var(--muted);
   font-size: 0.9rem;
   margin-top: 8px;
-  min-height: 60px; /* Чтобы блок не прыгал при смене текста */
+  min-height: 60px;
 }
 
-/* Кнопка "наверх" */
 #toTop {
   position: fixed;
   bottom: 20px;
@@ -259,29 +325,33 @@ window.addEventListener('load', () => {
 </script>
 
 <header>
-  <p style="color:#e2e8f0; font-size: 1.4rem; font-weight: bold; margin-bottom: 8px;">Полупроводники: прошлое и будущее</p>
-  <div style="display:inline-block; background:#1e293b; padding:4px 12px; border-radius:40px; font-size:12px; color: var(--accent);">Индивидуальный проект, 10 класс</div>
-  <nav>
-    <a href="#intro">Введение</a>
-    <a href="#theory">Теория</a>
-    <a href="#practice">Практика</a>
-    <a href="#compare">Сравнения</a>
-    <a href="#future">Будущее</a>
-    <a href="#end">Вывод</a>
-  </nav>
+  <div class="logo">
+    <span>⚡</span> Полупроводники: прошлое и будущее
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Меню</button>
+    <div class="dropdown-content">
+      <a href="#intro">Введение</a>
+      <a href="#theory">Теория</a>
+      <a href="#practice">Практика</a>
+      <a href="#compare">Сравнения</a>
+      <a href="#future">Будущее</a>
+      <a href="#end">Вывод</a>
+    </div>
+  </div>
 </header>
 
-<button id="toTop">↑ Наверх</button>
+<button id="toTop">Наверх</button>
 
 <section id="intro" class="hero">
   <div>
     <h2>Почему полупроводники важны</h2>
     <p>Полупроводники — фундамент современной электроники: от смартфонов до суперкомпьютеров. Их ключевое свойство — управляемая проводимость, позволяющая создавать диоды, транзисторы и интегральные схемы.</p>
     <div class="kpi">
-      <div class="card"><b>~3–5 нм</b><div class="muted">современный техпроцесс</div></div>
+      <div class="card"><b>3-5 нм</b><div class="muted">современный техпроцесс</div></div>
       <div class="card"><b>до 100 млрд</b><div class="muted">транзисторов</div></div>
-      <div class="card"><b>100–500×</b><div class="muted">рост производительности</div></div>
-      <div class="card"><b>200–500×</b><div class="muted">рост энергоэффективности</div></div>
+      <div class="card"><b>100-500x</b><div class="muted">рост производительности</div></div>
+      <div class="card"><b>200-500x</b><div class="muted">рост энергоэффективности</div></div>
     </div>
   </div>
   <div class="card">
@@ -294,29 +364,41 @@ window.addEventListener('load', () => {
   <h2>Теория</h2>
   <div class="grid">
     <div class="card theory-card">
-      <h3>История</h3>
-      <p>От экспериментов Фарадея до транзистора Шокли (1947) — основа современной электроники.</p>
-      <span class="card-hint">Читать подробнее...</span>
+      <h3>История полупроводников</h3>
+      <p>От экспериментов Фарадея до транзистора Шокли — основа современной электроники.</p>
+      <span class="card-hint">Подробнее...</span>
       <div class="theory-details">
-        В XIX веке Майкл Фарадей заложил основы понимания проводимости. А в 1947 году Уильям Шокли, Джон Бардин и Уолтер Браттейн создали первый транзистор. Это открытие привело к коренным преобразованиям в электронике, вытеснив устаревшие электронные лампы.
+        <p><strong>XIX век:</strong> Майкл Фарадей изучал электролиз и проводимость материалов, заложив основы для будущих открытий.</p>
+        <p><strong>1947 год:</strong> Уильям Шокли, Джон Бардин и Уолтер Браттейн создали первый точечный транзистор в лаборатории Bell Labs. Это революционное открытие заменило громоздкие электронные лампы.</p>
+        <p><strong>1956 год:</strong> Шокли получил Нобелевскую премию по физике за изобретение транзистора.</p>
+        <p><strong>1958 год:</strong> Джек Килби создал первую интегральную схему, объединив несколько транзисторов на одном кристалле.</p>
+        <p><strong>1971 год:</strong> Intel выпустила первый микропроцессор Intel 4004 с 2300 транзисторами.</p>
+        <p>С тех пор количество транзисторов на чипе удваивается каждые два года — это явление получило название «Закон Мура».</p>
       </div>
     </div>
     
     <div class="card theory-card">
       <h3>Классы материалов</h3>
-      <p>Проводники — высокая проводимость; диэлектрики — изоляция; полупроводники — управляемая проводимость.</p>
-      <span class="card-hint">Читать подробнее...</span>
+      <p>Проводники, полупроводники и диэлектрики — в чём разница?</p>
+      <span class="card-hint">Подробнее...</span>
       <div class="theory-details">
-        Главная особенность полупроводников (например, кремния) — способность изменять свою электропроводность под воздействием внешних факторов (температура, свет, примеси). Это позволяет им переходить из состояния изолятора в состояние с хорошей проводимостью.
+        <p><strong>Проводники (металлы):</strong> электроны свободно перемещаются по кристаллической решётке. Сопротивление растёт с температурой. Примеры: медь, алюминий, золото. Применение: провода, кабели.</p>
+        <p><strong>Полупроводники (кремний, германий):</strong> занимают промежуточное положение. Их главная особенность — проводимость можно управлять с помощью температуры, освещения или добавления примесей (легирования). Это позволяет создавать p-n переход — основу всех транзисторов и диодов.</p>
+        <p><strong>Диэлектрики (изоляторы):</strong> электроны прочно связаны с атомами, ток практически не идёт. Примеры: стекло, резина, керамика. Применение: изоляция проводов, конденсаторы.</p>
       </div>
     </div>
     
     <div class="card theory-card">
-      <h3>Применение</h3>
-      <p>Диоды, транзисторы, микросхемы, солнечные панели, связь 5G/6G, датчики.</p>
-      <span class="card-hint">Читать подробнее...</span>
+      <h3>Применение полупроводников</h3>
+      <p>Где используются полупроводники в повседневной жизни?</p>
+      <span class="card-hint">Подробнее...</span>
       <div class="theory-details">
-        Именно полупроводники позволили осуществить микроминиатюризацию, когда на одном чипе размещаются миллиарды транзисторов. Кроме того, в солнечной энергетике они используются для генерации электричества на основе принципа p-n перехода.
+        <p><strong>Электроника:</strong> процессоры, память, контроллеры — всё это работает на полупроводниках. Без них не было бы компьютеров, смартфонов, планшетов.</p>
+        <p><strong>Солнечная энергетика:</strong> солнечные панели используют p-n переход для преобразования света в электричество.</p>
+        <p><strong>Освещение:</strong> светодиоды (LED) — это полупроводниковые приборы, которые преобразуют ток в свет с высоким КПД.</p>
+        <p><strong>Связь:</strong> технологии 5G и 6G используют нитрид галлия (GaN) для создания мощных и компактных передатчиков.</p>
+        <p><strong>Медицина:</strong> кардиостимуляторы, слуховые аппараты, лаборатории-на-чипе.</p>
+        <p><strong>Транспорт:</strong> электромобили используют силовые полупроводники на карбиде кремния (SiC) для управления двигателями.</p>
       </div>
     </div>
   </div>
@@ -325,9 +407,9 @@ window.addEventListener('load', () => {
 <section id="practice">
   <h2>Практическая часть</h2>
   <div class="grid">
-    <div class="card"><h3>CPU</h3><p>Универсальные вычисления, низкая задержка, 4–128 ядер. Оптимизирован для последовательных операций.</p></div>
-    <div class="card"><h3>GPU</h3><p>Параллельные вычисления, тысячи ядер (до 10 000), высокая пропускная способность. Идеально для графики и нейросетей.</p></div>
-    <div class="card"><h3>TPU</h3><p>Тензорные процессоры. Матричные операции для ИИ, максимальная эффективность в машинном обучении.</p></div>
+    <div class="card"><h3>CPU</h3><p>Центральный процессор. Универсальные вычисления, низкая задержка, 4-128 ядер. Оптимизирован для последовательных операций. Подходит для операционных систем, офисных приложений, баз данных.</p></div>
+    <div class="card"><h3>GPU</h3><p>Графический процессор. Параллельные вычисления, тысячи ядер (до 10 000), высокая пропускная способность. Идеально для 3D-графики, видеомонтажа, обучения нейронных сетей.</p></div>
+    <div class="card"><h3>TPU</h3><p>Тензорный процессор от Google. Специализированная архитектура для матричного умножения. Максимальная эффективность для задач искусственного интеллекта и глубокого обучения.</p></div>
   </div>
 </section>
 
@@ -340,7 +422,7 @@ window.addEventListener('load', () => {
       <table>
         <tr><th>Характеристика</th><th>CPU</th><th>GPU</th><th>TPU</th></tr>
         <tr><td>Тип вычислений</td><td>Последовательные</td><td>Параллельные</td><td>Матричные</td></tr>
-        <tr><td>Количество ядер</td><td>4–128</td><td>1000–10000</td><td>1000+ спец. блоков</td></tr>
+        <tr><td>Количество ядер</td><td>4-128</td><td>1000-10000</td><td>1000+ спец. блоков</td></tr>
         <tr><td>Энергоэффективность</td><td>Низкая (5-20 GFLOPS/Вт)</td><td>Средняя (20-50)</td><td>Высокая (100-200)</td></tr>
         <tr><td>Применение</td><td>Универсально</td><td>Графика / Нейросети</td><td>Только ИИ</td></tr>
       </table>
@@ -348,34 +430,35 @@ window.addEventListener('load', () => {
   </div>
 
   <div class="card">
-    <h3>Новые материалы: Si vs SiC vs GaN</h3>
+    <h3>Новые материалы: Si, SiC и GaN</h3>
     <div class="table-wrapper">
       <table>
         <tr><th>Параметр</th><th>Кремний (Si)</th><th>Карбид кремния (SiC)</th><th>Нитрид галлия (GaN)</th></tr>
-        <tr><td>Ширина зоны (эВ)</td><td>1.12</td><td>3.26</td><td>3.44</td></tr>
-        <tr><td>Макс. температура (°C)</td><td>150–200</td><td>300–600</td><td>300–500</td></tr>
-        <tr><td>Относительная стоимость</td><td>1x</td><td>3–5x</td><td>5–10x</td></tr>
+        <tr><td>Ширина запрещённой зоны (эВ)</td><td>1.12</td><td>3.26</td><td>3.44</td></tr>
+        <tr><td>Макс. температура работы</td><td>150-200°C</td><td>300-600°C</td><td>300-500°C</td></tr>
+        <tr><td>Подвижность электронов</td><td>1400</td><td>900</td><td>2000</td></tr>
+        <tr><td>Относительная стоимость</td><td>1x</td><td>3-5x</td><td>5-10x</td></tr>
       </table>
     </div>
-    <p style="font-size: 0.9rem; color: var(--muted); margin-top: 10px;">Доля рынка широкозонных полупроводников: 2023 год ~10% → прогноз 2030 года ~30–40% (драйверы: электромобили и инфраструктура).</p>
+    <p style="font-size: 0.9rem; color: var(--muted); margin-top: 10px;">Доля рынка широкозонных полупроводников: 2023 год ~10% → прогноз 2030 года ~30-40%. Драйверы роста: электромобили, быстрая зарядка, зелёная энергетика.</p>
   </div>
 
   <div class="card">
     <h3>Эволюция технологий (2005 vs 2024)</h3>
     <div class="slider-container">
       <input type="range" min="0" max="100" value="0" id="techSlider">
-      <div id="sliderValue">🔴 130 нм (2005 год)</div>
-      <p id="sliderInfo"></p> 
+      <div id="sliderValue">130 нм (2005 год)</div>
+      <p id="sliderInfo"></p>
     </div>
   </div>
 </section>
 
 <section id="future">
-  <h2>Будущее</h2>
+  <h2>Будущее полупроводников</h2>
   <div class="grid">
-    <div class="card"><h3>Нанотехнологии</h3><p>Квантовые точки и структуры на уровне атомов. Изменение свойств материалов на фундаментальном уровне.</p></div>
-    <div class="card"><h3>Специализация</h3><p>Дрейф от универсальности к целевой архитектуре: нейроморфные процессоры для сложной обработки ИИ.</p></div>
-    <div class="card"><h3>Новые горизонты</h3><p>Силовая электроника для электромобилей, лабораторные биосенсоры на чипе и компоненты для космоса.</p></div>
+    <div class="card"><h3>Нанотехнологии</h3><p>Квантовые точки, нанотрубки и графен. Работа с материалами на уровне атомов открывает принципиально новые свойства.</p></div>
+    <div class="card"><h3>Специализированные чипы</h3><p>Нейроморфные процессоры, имитирующие работу мозга. TPU и другие ускорители для искусственного интеллекта.</p></div>
+    <div class="card"><h3>Новые материалы</h3><p>SiC и GaN уже меняют энергетику. Графен может стать основой транзисторов атомарной толщины.</p></div>
   </div>
 </section>
 
@@ -383,71 +466,62 @@ window.addEventListener('load', () => {
   <h2>Заключение</h2>
   <div class="card">
     <ul>
-      <li><b>Гипотеза подтвердилась:</b> полупроводники не утратят, а усилят свою роль благодаря переходу к новой парадигме.</li>
-      <li><b>Миниатюризация:</b> Количество транзисторов выросло со 125 млн (2005) до 100 млрд (2024), а энергоэффективность в сотни раз.</li>
-      <li><b>Сдвиг материалов:</b> SiC и GaN открывают новые возможности, работая при высоких температурах и частотах.</li>
-      <li><b>Архитектура:</b> Будущее за специализированными чипами (TPU) вместо универсальных CPU.</li>
+      <li><strong>Гипотеза подтвердилась:</strong> полупроводники не утратят, а усилят свою роль благодаря переходу к новой парадигме.</li>
+      <li><strong>Миниатюризация:</strong> количество транзисторов выросло со 125 млн (2005) до 100 млрд (2024), а энергоэффективность — в сотни раз.</li>
+      <li><strong>Сдвиг материалов:</strong> SiC и GaN открывают новые возможности, работая при высоких температурах и частотах.</li>
+      <li><strong>Архитектура:</strong> будущее за специализированными чипами (GPU, TPU) вместо универсальных CPU.</li>
+      <li><strong>Ключевой вывод:</strong> полупроводники остаются фундаментом научно-технического прогресса и будут определять развитие ИИ, энергетики, транспорта и медицины.</li>
     </ul>
   </div>
 </section>
 
 <footer>
-  <p>Кодиров Тошбой, 10 класс • Проект по физике «Полупроводники их прошлое и будущее»</p>
+  <p>Кодиров Тошбой, 10 класс • Проект по физике «Полупроводники: прошлое и будущее»</p>
 </footer>
 
 <script>
-  // Логика для раскрывающихся карточек раздела "Теория"
   const theoryCards = document.querySelectorAll('.theory-card');
   theoryCards.forEach(card => {
     card.addEventListener('click', () => {
-      // Переключаем класс active
       card.classList.toggle('active');
-      
-      // Меняем текст подсказки
       const hint = card.querySelector('.card-hint');
       if(card.classList.contains('active')) {
-        hint.innerText = "Скрыть текст";
-        hint.style.color = "#94a3b8"; // Делаем менее заметным при раскрытии
+        hint.innerText = "Скрыть";
+        hint.style.color = "#94a3b8";
       } else {
-        hint.innerText = "Читать подробнее...";
+        hint.innerText = "Подробнее...";
         hint.style.color = "var(--accent)";
       }
     });
   });
 
-  // Логика для слайдера техпроцесса
   const slider = document.getElementById('techSlider');
   const valDiv = document.getElementById('sliderValue');
   const infoDiv = document.getElementById('sliderInfo');
 
-  // Данные для каждого этапа техпроцесса на основе документа
   const updateSliderInfo = (val) => {
     if (val < 25) {
-      valDiv.innerText = '🔴 90–130 нм (2005 год)';
-      infoDiv.innerText = 'Типичный представитель: Intel Pentium 4. Процессор имел 1 ядро, около 125 млн транзисторов и пиковое энергопотребление до 130 Вт. Производительность составляла всего ~5–10 GFLOPS при крайне низкой энергоэффективности.';
+      valDiv.innerText = '130 нм (2005 год)';
+      infoDiv.innerText = 'Intel Pentium 4. 1 ядро, 125 млн транзисторов, 80-130 Вт. Производительность: 5-10 GFLOPS.';
     } else if (val < 50) {
-      valDiv.innerText = '🟠 32–65 нм (2010-е годы)';
-      infoDiv.innerText = 'Начало эры многоядерности. Транзисторы становятся меньше, их число достигает почти миллиарда. Растет производительность, и инженеры начинают активную борьбу за снижение тепловыделения.';
+      valDiv.innerText = '32-65 нм (2010-е годы)';
+      infoDiv.innerText = 'Начало эры многоядерности. 2-4 ядра, до 1 млрд транзисторов. Рост производительности.';
     } else if (val < 75) {
-      valDiv.innerText = '🟢 10–22 нм (2015-е годы)';
-      infoDiv.innerText = 'Переход на новые транзисторные структуры (FinFET). Количество транзисторов исчисляется миллиардами. Энергоэффективность заметно повышается, происходит скачок в развитии графических и мобильных чипов.';
+      valDiv.innerText = '10-22 нм (2015-е годы)';
+      infoDiv.innerText = 'FinFET транзисторы. 4-8 ядер, 2-5 млрд транзисторов. Скачок энергоэффективности.';
     } else {
-      valDiv.innerText = '✨ 3–5 нм (2024 год) ✨';
-      infoDiv.innerText = 'Современные процессоры (Apple M3, Intel Core i9). Техпроцесс уменьшился более чем в 40 раз по сравнению с 2005 годом. До 24 ядер, от 20 до 100 миллиардов транзисторов на кристалле и производительность до 5000 GFLOPS!';
+      valDiv.innerText = '3-5 нм (2024 год)';
+      infoDiv.innerText = 'Apple M3 / Intel Core i9. 8-24 ядер, до 100 млрд транзисторов. Производительность до 5000 GFLOPS!';
     }
   };
 
   if (slider && valDiv && infoDiv) {
-    // Инициализация при загрузке страницы
     updateSliderInfo(slider.value);
-    
-    // Обновление при перетаскивании
     slider.oninput = function() {
       updateSliderInfo(this.value);
     };
   }
 
-  // Кнопка наверх + анимация появления
   const toTopBtn = document.getElementById('toTop');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) toTopBtn.classList.add('show');
